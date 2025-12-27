@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Geist, Geist_Mono } from "next/font/google"
-import { Header } from "@/components/layout/header";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/layout/sidebar";
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -33,15 +34,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <SidebarProvider>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <AppSidebar />
+          <SidebarTrigger />
           {children}
         </ThemeProvider>
+        </SidebarProvider>
       </body>
     </html>
   )
